@@ -29,6 +29,9 @@ const serveHello = (req, res, next) => {
 };
 //
 app.use(express.static(pathToDistFolder));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(pathToDistFolder, "index.html"));
+});
 app.use(staticShock);
 app.use(logRoutes);
 app.get("/", serveIndex);
