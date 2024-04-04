@@ -4,7 +4,8 @@ const path = require("path");
 const gifs = require("./gifs.json");
 //absolute path
 const app = express();
-const pathToDistFolder = path.join(__dirname, "..", "vite-project", "dist");
+const pathToDistFolder =
+  "/Users/mewtwolou/Development/unit-88/8-0-1-assignment-LeaderLou1/Multilingual/dist";
 
 //middleware controller, sends static pages to frontend user requests
 const staticShock = express.static(pathToDistFolder);
@@ -18,8 +19,8 @@ const logRoutes = (req, res, next) => {
 };
 
 //controllers html
-const serveIndex = (req, res, next) => res.sendFile(__dirname + "/index.html");
-
+const serveIndex = (req, res, next) =>
+  res.sendFile(path.join(pathToDistFolder, "index.html"));
 //response constrollers
 const serveData = (req, res, next) => res.send(gifs);
 const serveHello = (req, res, next) => {
@@ -27,6 +28,7 @@ const serveHello = (req, res, next) => {
   res.send(`hello ${name}`);
 };
 //
+app.use(express.static(pathToDistFolder));
 app.use(staticShock);
 app.use(logRoutes);
 app.get("/", serveIndex);
