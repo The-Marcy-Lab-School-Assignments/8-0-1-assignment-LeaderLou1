@@ -2,6 +2,7 @@
 const express = require("express");
 const path = require("path");
 const gifs = require("./gifs.json");
+
 //absolute path
 const app = express();
 const pathToDistFolder =
@@ -39,7 +40,7 @@ app.get("/api/data", serveData);
 app.get("/api/hello", serveHello);
 
 //port
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Check my server out on http://localhost:${port}`);
 });
