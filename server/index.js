@@ -5,8 +5,7 @@ const gifs = require("./gifs.json");
 
 //absolute path
 const app = express();
-const pathToDistFolder =
-  "/Users/mewtwolou/Development/unit-88/8-0-1-assignment-LeaderLou1/Multilingual/dist";
+const pathToDistFolder = path.join(__dirname, "..", "Multilingual", "dist");
 
 //middleware controller, sends static pages to frontend user requests
 const staticShock = express.static(pathToDistFolder);
