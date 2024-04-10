@@ -17,24 +17,25 @@ const logRoutes = (req, res, next) => {
   console.log(`${req.method}:${req.originalUrl}-${time}`);
   next();
 };
+app.use(staticShock);
+app.use(logRoutes);
 
 //controllers html
-const serveIndex = (req, res, next) =>
-  res.sendFile(path.join(pathToDistFolder, "index.html"));
-//response constrollers
+// const serveIndex = (req, res, next) =>
+//   res.sendFile(path.join(pathToDistFolder, "index.html"));
+// //response constrollers
 const serveData = (req, res, next) => res.send(gifs);
 const serveHello = (req, res, next) => {
   const name = req.query.name || "stranger";
   res.send(`hello ${name}`);
 };
 //
-app.use(express.static(pathToDistFolder));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(pathToDistFolder, "index.html"));
-});
-app.use(staticShock);
-app.use(logRoutes);
-app.get("/", serveIndex);
+
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(pathToDistFolder, "index.html"));
+// });
+
+// app.get("/", serveIndex);
 app.get("/api/data", serveData);
 app.get("/api/hello", serveHello);
 
