@@ -21,9 +21,6 @@ app.use(staticShock);
 app.use(logRoutes);
 
 //controllers html
-// const serveIndex = (req, res, next) =>
-//   res.sendFile(path.join(pathToDistFolder, "index.html"));
-// //response constrollers
 const serveData = (req, res, next) => res.send(gifs);
 const serveHello = (req, res, next) => {
   const name = req.query.name || "stranger";
@@ -31,11 +28,6 @@ const serveHello = (req, res, next) => {
 };
 //
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(pathToDistFolder, "index.html"));
-// });
-
-// app.get("/", serveIndex);
 app.get("/api/data", serveData);
 app.get("/api/hello", serveHello);
 
